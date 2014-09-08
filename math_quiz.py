@@ -9,27 +9,27 @@ def q_length():
     return quiz_length
 
 
-def q_type(questionCount, chosen_level ):
+def q_type(question_count, chosen_level ):
     question_type = raw_input("What type of questions would you like? (a)ddition, (s)ubtraction, (m)ultiplication, (d)ivision, or mi(x)ed  ").lower()
     for question in question_type:
         if question == "a":
-            addition(questionCount, chosen_level)
+            addition(question_count, chosen_level)
             return
         elif question == "s":
-            subtraction(questionCount, chosen_level)
+            subtraction(question_count, chosen_level)
             return
         elif question == "m":
-            multiplication(questionCount, chosen_level)
+            multiplication(question_count, chosen_level)
             return
         elif question == "d":
-            division(questionCount, chosen_level)
+            division(question_count, chosen_level)
             return
         elif question == "x":
-            mixed(questionCount, chosen_level)
+            mixed(question_count, chosen_level)
             return
         else:
             print "sorry, didn't catch that."
-            q_type(questionCount, chosen_level)
+            q_type(question_count, chosen_level)
 
 
 def user_level():
@@ -39,26 +39,26 @@ def user_level():
 
 def get_numbers(levels):
     if levels == "b":
-        startRange = randint(1, 10)
-        endRange = randint(1, 10)
+        start_range = randint(1, 10)
+        end_range = randint(1, 10)
     elif levels == "i":
-        startRange = randint(1, 25)
-        endRange = randint(1, 25)
+        start_range = randint(1, 25)
+        end_range = randint(1, 25)
     elif levels == "a":
-        startRange = randint(1, 100)
-        endRange = randint(1, 100)
+        start_range = randint(1, 100)
+        end_range = randint(1, 100)
     else:
         print "sorry, didn't catch that."
 
-    return startRange, endRange
+    return start_range, end_range
 
 
-def addition(questionCount, chosen_level):
+def addition(question_count, chosen_level):
     global correct
-    for i in range(0, questionCount):
-        startRange, endRange = get_numbers(chosen_level)
-        prod = startRange + endRange
-        ans = input("What's %d plus %d? " % (startRange, endRange))
+    for i in range(0, question_count):
+        start_range, end_range = get_numbers(chosen_level)
+        prod = start_range + end_range
+        ans = input("What's %d plus %d? " % (start_range, end_range))
         if ans == prod:
             print "That's right -- well done.\n"
             correct += 1
@@ -67,12 +67,12 @@ def addition(questionCount, chosen_level):
     return int(correct)
 
 
-def subtraction(questionCount, chosen_level):
+def subtraction(question_count, chosen_level):
     global correct
-    for i in range(0, questionCount):
-        startRange, endRange = get_numbers(chosen_level)
-        prod = startRange - endRange
-        ans = input("What's %d minus %d? " % (startRange, endRange))
+    for i in range(0, question_count):
+        start_range, end_range = get_numbers(chosen_level)
+        prod = start_range - end_range
+        ans = input("What's %d minus %d? " % (start_range, end_range))
         if ans == prod:
             print "That's right -- well done.\n"
             correct += 1
@@ -81,12 +81,12 @@ def subtraction(questionCount, chosen_level):
     return int(correct)
 
 
-def multiplication(questionCount, chosen_level):
+def multiplication(question_count, chosen_level):
     global correct
-    for i in range(0, questionCount):
-        startRange, endRange = get_numbers(chosen_level)
-        prod = startRange * endRange
-        ans = input("What's %d times %d? " % (startRange, endRange))
+    for i in range(0, question_count):
+        start_range, end_range = get_numbers(chosen_level)
+        prod = start_range * end_range
+        ans = input("What's %d times %d? " % (start_range, end_range))
         if ans == prod:
             print "That's right -- well done.\n"
             correct += 1
@@ -95,12 +95,12 @@ def multiplication(questionCount, chosen_level):
     return int(correct)
 
 
-def division(questionCount, chosen_level):
+def division(question_count, chosen_level):
     global correct
-    for i in range(0, questionCount):
-        startRange, endRange = get_numbers(chosen_level)
-        prod = startRange / endRange
-        ans = input("What's %d divided by %d? " % (startRange, endRange))
+    for i in range(0, question_count):
+        start_range, end_range = get_numbers(chosen_level)
+        prod = start_range / end_range
+        ans = input("What's %d divided by %d? " % (start_range, end_range))
         if ans == prod:
             print "That's right -- well done.\n"
             correct += 1
@@ -109,8 +109,8 @@ def division(questionCount, chosen_level):
     return int(correct)
 
 
-def mixed(questionCount, chosen_level):
-    for q in range(questionCount):
+def mixed(question_count, chosen_level):
+    for q in range(question_count):
         mixed_question = randint(1, 4)
         if mixed_question == 1:
             addition(1, chosen_level)
@@ -124,14 +124,14 @@ def mixed(questionCount, chosen_level):
             print "Ack!"
 
 
-def score(questionCount):
+def score(question_count):
     print "in score method"
     global correct
-    fraction_correct = correct/questionCount
+    fraction_correct = correct/question_count
     two_thirds = float(2)/float(3)
     print(two_thirds)
     one_third = float(1)/float(3)
-    print "\nI asked you {} questions.  You got %d of them right.".format(questionCount) % correct
+    print "\nI asked you {} questions.  You got %d of them right.".format(question_count) % correct
     if float(fraction_correct) >= two_thirds:
         print "Well done!"
         print ""
@@ -149,10 +149,10 @@ def math_quiz():
     print ""
     print "Welcome to Math Quiz!"
     print ""
-    questionCount = q_length()
+    question_count = q_length()
     chosen_level = user_level()
-    q_type(questionCount, chosen_level )
-    score(questionCount)
+    q_type(question_count, chosen_level )
+    score(question_count)
 
 
 math_quiz()
